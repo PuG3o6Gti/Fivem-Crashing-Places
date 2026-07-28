@@ -1,0 +1,194 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #111;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#mapViewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+}
+
+#mapViewport.dragging {
+  cursor: grabbing;
+}
+
+#mapStage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1408px;
+  height: 1082px;
+  transform-origin: 0 0;
+  user-select: none;
+}
+
+#mapImage,
+#zonesLayer {
+  position: absolute;
+  inset: 0;
+  width: 1408px;
+  height: 1082px;
+}
+
+#mapImage {
+  display: block;
+  pointer-events: none;
+}
+
+#zonesLayer {
+  overflow: visible;
+}
+
+.crash-zone {
+  fill: rgba(255, 0, 0, 0.25);
+  stroke: #ff1515;
+  stroke-width: 7;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+}
+
+.crash-zone:hover {
+  fill: rgba(255, 0, 0, 0.42);
+}
+
+.zone-label {
+  fill: white;
+  stroke: black;
+  stroke-width: 4;
+  paint-order: stroke;
+  font-size: 24px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+#toolbar {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+
+#toolbar button {
+  min-width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(20, 20, 20, 0.88);
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 0 14px;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0,0,0,.35);
+}
+
+#toolbar button:hover {
+  background: rgba(45, 45, 45, 0.95);
+}
+
+#editorToggle.active {
+  background: #b40000;
+}
+
+#status {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  background: rgba(20,20,20,.82);
+  color: white;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-size: 14px;
+  z-index: 20;
+}
+
+dialog {
+  border: 0;
+  border-radius: 12px;
+  padding: 20px;
+  width: min(92vw, 420px);
+}
+
+dialog::backdrop {
+  background: rgba(0,0,0,.65);
+}
+
+dialog form {
+  display: grid;
+  gap: 14px;
+}
+
+dialog h2 {
+  margin: 0 0 6px;
+}
+
+dialog label {
+  display: grid;
+  gap: 6px;
+  font-weight: bold;
+}
+
+dialog input[type="text"],
+dialog input:not([type]) {
+  width: 100%;
+}
+
+#zoneName {
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 7px;
+  font-size: 16px;
+}
+
+.dialogButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.dialogButtons button {
+  padding: 9px 15px;
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+#saveZone {
+  background: #b40000;
+  color: white;
+}
+
+@media (max-width: 650px) {
+  #toolbar {
+    top: 8px;
+    right: 8px;
+    gap: 5px;
+  }
+
+  #toolbar button {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 14px;
+  }
+
+  #status {
+    bottom: 8px;
+    width: calc(100% - 16px);
+    text-align: center;
+  }
+}
